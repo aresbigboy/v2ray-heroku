@@ -1,9 +1,4 @@
 #!/bin/bash
-
-####
-apk --no-cache add openssl wget
-####
-
 # Install V2Ray
 curl https://install.direct/go.sh | bash
 # Remove extra functions
