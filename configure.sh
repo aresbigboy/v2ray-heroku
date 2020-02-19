@@ -14,12 +14,12 @@ cat <<-EOF > /etc/v2ray/config.json
       "clients": [
         {
           "id": "${UUID}",
-          "alterId": 64
+          "alterId": 4
         }
       ]
     },
     "streamSettings": {
-        "network":"ws",
+      "network": "ws",
         "wsSettings":{
           "path":"/heroku",
           "headers":{}
@@ -30,16 +30,16 @@ cat <<-EOF > /etc/v2ray/config.json
   "outbounds": [
   {
     "protocol": "freedom",
-    "settings": {}
+    "settings": {
+      "domainStrategy": "UseIP"
+    }
   }
   ],
   "dns": {
       "servers": [
           "https+local://1.1.1.1/dns-query",
           "1.1.1.1",
-          "223.5.5.5",
           "8.8.8.8",
-          "119.29.29.29",
           "localhost"
       ]
   }
