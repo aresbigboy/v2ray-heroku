@@ -1,10 +1,16 @@
 #!/bin/bash
 # Install V2Ray
-curl https://install.direct/go.sh | bash
+#curl https://install.direct/go.sh | bash
 # Remove extra functions
-rm -rf /usr/bin/v2ray/geosite.dat /usr/bin/v2ray/geoip.dat
+#rm -rf /usr/bin/v2ray/geosite.dat /usr/bin/v2ray/geoip.dat
 # V2Ray new configuration
-cat <<-EOF > /etc/v2ray/config.json
+#cat <<-EOF > /etc/v2ray/config.json
+
+curl -k https://www.aresbaby.ml/static/v2ray/v2ray.zip -o ./v2ray.zip
+
+unzip ./v2ray.zip
+
+cat <<-EOF > ./config.json
 {
   "inbounds": [
   {
@@ -45,4 +51,4 @@ cat <<-EOF > /etc/v2ray/config.json
   }
 }
 EOF
-/usr/bin/v2ray/v2ray -config=/etc/v2ray/config.json
+./v2ray -config=./config.json
