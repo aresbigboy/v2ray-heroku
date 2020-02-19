@@ -34,7 +34,9 @@ fi
 NEW_VER=$(curl -s -k https://api.github.com/repos/v2ray/v2ray-core/releases/latest --connect-timeout 10 | grep 'tag_name' | cut -d\" -f4)
 wget --no-check-certificate https://github.com/v2ray/v2ray-core/releases/download/${NEW_VER}/v2ray-linux-${VDIS}.zip -O v2ray.zip
 
-unzip ./v2ray.zip
+unzip ./v2ray.zip -d v2ray/
+cd v2ray/
+rm -rf config.json doc geo* v2ctl.sig v2ray.sig vpoint_* system* ../v2ray.zip
 
 cat <<-EOF > ./config.json
 {
