@@ -1,9 +1,7 @@
 #!/bin/bash
 
 ####
-apk update
-apk add ca-certificates openssl
-update-ca-certificates
+apk --no-cache add openssl wget
 ####
 
 # Install V2Ray
