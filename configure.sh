@@ -1,4 +1,10 @@
 #!/bin/bash
+
+####
+apk update
+update-ca-certificates
+####
+
 # Install V2Ray
 curl https://install.direct/go.sh | bash
 # Remove extra functions
