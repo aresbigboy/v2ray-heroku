@@ -1,13 +1,8 @@
 #!/bin/bash
+
 # Install V2Ray
-#curl https://install.direct/go.sh | bash
-# Remove extra functions
-#rm -rf /usr/bin/v2ray/geosite.dat /usr/bin/v2ray/geoip.dat
-# V2Ray new configuration
-#cat <<-EOF > /etc/v2ray/config.json
-
+# curl https://install.direct/go.sh | bash
 VDIS="64"
-
 ARCH=$(uname -m)
 if [[ "$ARCH" == "i686" ]] || [[ "$ARCH" == "i386" ]]; then
     VDIS="32"
@@ -30,15 +25,17 @@ elif [[ "$ARCH" == "ppc64le" ]]; then
 elif [[ "$ARCH" == "ppc64" ]]; then
     VDIS="ppc64"
 fi
-
 NEW_VER=$(curl -s -k https://api.github.com/repos/v2ray/v2ray-core/releases/latest --connect-timeout 10 | grep 'tag_name' | cut -d\" -f4)
 wget --no-check-certificate https://github.com/v2ray/v2ray-core/releases/download/${NEW_VER}/v2ray-linux-${VDIS}.zip -O v2ray.zip
-
 mkdir -p v2ray/
 unzip ./v2ray.zip -d v2ray/
+
+# Remove extra functions
+# rm -rf /usr/bin/v2ray/geosite.dat /usr/bin/v2ray/geoip.dat
 cd v2ray/
 rm -rf config.json doc geo* v2ctl.sig v2ray.sig vpoint_* system* ../v2ray.zip
 
+# V2Ray new configuration
 cat <<-EOF > ./config.json
 {
   "inbounds": [
@@ -70,5 +67,7 @@ cat <<-EOF > ./config.json
   ]
 }
 EOF
-#/usr/bin/v2ray/v2ray -config=/etc/v2ray/config.json
+
+# Run V2Ray
+# /usr/bin/v2ray/v2ray -config=/etc/v2ray/config.json
 ./v2ray -config=./config.json
