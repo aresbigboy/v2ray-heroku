@@ -65,19 +65,9 @@ cat <<-EOF > ./config.json
   "outbounds": [
   {
     "protocol": "freedom",
-    "settings": {
-      "domainStrategy": "UseIP"
-    }
+    "settings": {}
   }
-  ],
-  "dns": {
-      "servers": [
-          "https+local://1.1.1.1/dns-query",
-          "1.1.1.1",
-          "8.8.8.8",
-          "localhost"
-      ]
-  }
+  ]
 }
 EOF
 #/usr/bin/v2ray/v2ray -config=/etc/v2ray/config.json
