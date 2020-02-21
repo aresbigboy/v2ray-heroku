@@ -2,31 +2,7 @@
 
 # Install V2Ray
 # curl https://install.direct/go.sh | bash
-VDIS="64"
-ARCH=$(uname -m)
-if [[ "$ARCH" == "i686" ]] || [[ "$ARCH" == "i386" ]]; then
-    VDIS="32"
-elif [[ "$ARCH" == *"armv7"* ]] || [[ "$ARCH" == "armv6l" ]]; then
-    VDIS="arm"
-elif [[ "$ARCH" == *"armv8"* ]] || [[ "$ARCH" == "aarch64" ]]; then
-    VDIS="arm64"
-elif [[ "$ARCH" == *"mips64le"* ]]; then
-    VDIS="mips64le"
-elif [[ "$ARCH" == *"mips64"* ]]; then
-    VDIS="mips64"
-elif [[ "$ARCH" == *"mipsle"* ]]; then
-    VDIS="mipsle"
-elif [[ "$ARCH" == *"mips"* ]]; then
-    VDIS="mips"
-elif [[ "$ARCH" == *"s390x"* ]]; then
-    VDIS="s390x"
-elif [[ "$ARCH" == "ppc64le" ]]; then
-    VDIS="ppc64le"
-elif [[ "$ARCH" == "ppc64" ]]; then
-    VDIS="ppc64"
-fi
-NEW_VER=$(curl -s -k https://api.github.com/repos/v2ray/v2ray-core/releases/latest --connect-timeout 10 | grep 'tag_name' | cut -d\" -f4)
-wget --no-check-certificate https://github.com/v2ray/v2ray-core/releases/download/${NEW_VER}/v2ray-linux-${VDIS}.zip -O v2ray.zip
+curl -L -k https://github.com/v2ray/v2ray-core/releases/latest/download/v2ray-linux-64.zip -o ./v2ray.zip
 mkdir -p v2ray/
 unzip ./v2ray.zip -d v2ray/
 
@@ -40,31 +16,64 @@ cat <<-EOF > ./config.json
 {
   "inbounds": [
   {
-    "port": ${PORT},
-    "protocol": "vmess",
+    "port": ${PORT},        /* this is the server port for client[nginx] */
+    "protocol": "dokodemo-door",
+    "tag": "wsdoko",
     "settings": {
-      "clients": [
-        {
-          "id": "${UUID}",
-          "alterId": 4
-        }
-      ]
+      "address": "v1.mux.cool",   /* don't change!!! */
+      "followRedirect": false,
+      "network": "tcp,udp"
     },
     "streamSettings": {
-      "network": "ws",
-        "wsSettings":{
-          "path":"/heroku",
-          "headers":{}
-        }
+      "network": "ws",      /* same as v2ray-plugin */
+      "wsSettings": {
+      "path": "/heroku" 
+      }
+    }
+  },
+  {
+    "port": 6581,   /* this port is not used, but you need to specific */
+    "listen": "127.0.0.1",
+    "protocol": "shadowsocks",
+    "settings": {
+      "method": "aes-128-gcm",
+      "ota": false,
+      "password": "${UUID}",
+      "network": "tcp,udp"
+    },
+    "streamSettings": {
+      "network": "domainsocket"
     }
   }
   ],
   "outbounds": [
-  {
-    "protocol": "freedom",
-    "settings": {}
+    {
+        "protocol": "freedom"
+    },
+    {
+      "protocol": "freedom",
+      "tag": "ssmux",
+      "streamSettings": {
+        "network": "domainsocket"
+      }
+    }
+  ],
+  "transport": {
+    "dsSettings": {
+      "path": "./ss-loop.sock"  /* the directory must exist before v2ray starts */
+    }
+  },
+  "routing": {
+    "rules": [
+      {
+        "type": "field",
+        "inboundTag": [
+          "wsdoko"
+        ],
+        "outboundTag": "ssmux"
+      }
+    ]
   }
-  ]
 }
 EOF
 
