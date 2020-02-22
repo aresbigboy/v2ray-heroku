@@ -6,6 +6,8 @@
 
 用于在 Heroku 上部署 ss + v2ray-plugin 模式的翻墙。
 
+实际上并没有原作者的 v2ray + ws 的模式好用，这是为了实验和测试使用。
+
 **Heroku 为我们提供了免费的容器服务，我们不应该滥用它，所以本项目不宜做为长期翻墙使用。**
 
 **可以部署两个以上的应用，实现[负载均衡](https://toutyrater.github.io/app/balance.html)，避免长时间大流量连接某一应用而被 Heroku 判定为滥用。**
