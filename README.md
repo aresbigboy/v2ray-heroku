@@ -6,7 +6,8 @@
 
 用于在 Heroku 上部署 ss + v2ray-plugin 模式的翻墙。
 
-实际上并没有原作者的 v2ray + ws 的模式好用(因为heroku没有提供udp转发，所以用ss的话，udp数据包不能翻墙。 而用v2ray的话，udp数据包默认通过tcp传输，也就是 udp over tcp，所以不影响udp数据包的转发)， 所以这里是为了实验和测试使用。
+实际上并没有原作者的 v2ray + ws 的模式好用 （因为heroku没有提供udp转发，所以用ss的话，udp数据包不能翻墙。 而用v2ray的话，udp数据包默认通过tcp传输，也就是 udp over tcp，所以不影响udp数据包的转发）， 所以这里是为了实验和测试使用。
+
 
 PS：本项目的部署脚本随时会因为自己实验而做出更改，请不要依赖本项目进行部署。原作者的代码较为稳定，请从原作者 bclswl0827 进行项目部署
 https://github.com/bclswl0827/v2ray-heroku
