@@ -2,7 +2,9 @@
 
 ## 概述
 
-用于在 Heroku 上部署 V2Ray Websocket。
+####fork from bclswl0827。 thanks  bclswl0827####
+
+用于在 Heroku 上部署 ss + v2ray-plugin 模式的翻墙。
 
 **Heroku 为我们提供了免费的容器服务，我们不应该滥用它，所以本项目不宜做为长期翻墙使用。**
 
@@ -24,6 +26,9 @@
 
 ## 注意
 
+ss的加密方式是aes-128-gcm ，  密码是 uuid ，  地址填  项目名.herokuapp.com  ， 端口填443
+v2ray-plugin 的关键设置是  patch=/heroku;host=项目名.herokuapp.com;tls
+
 V2Ray 将在部署时自动安装最新版本。
 
-**出于安全考量，除非使用 CDN，否则请不要使用自定义域名，而使用 Heroku 分配的二级域名，以实现 V2Ray Websocket + TLS。**
+**出于安全考量，除非使用 CDN，否则请不要使用自定义域名，而使用 Heroku 分配的二级域名，以实现 ss + v2ray-plugin + TLS。**
