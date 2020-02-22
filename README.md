@@ -1,4 +1,4 @@
-# V2Ray Heroku
+# SS + V2Ray-plugin on Heroku
 
 ## 概述
 
