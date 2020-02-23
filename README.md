@@ -34,7 +34,7 @@ https://github.com/bclswl0827/v2ray-heroku
 
 ## 注意
 
-ss的加密方式是aes-128-gcm ，  密码是 uuid ，  地址填  项目名.herokuapp.com  ， 端口填443
+ss的加密方式是 chacha20 ，  密码是 uuid ，  地址填  项目名.herokuapp.com  ， 端口填443
 
 v2ray-plugin 的关键设置是  patch=/heroku;host=项目名.herokuapp.com;tls
 
