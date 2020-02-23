@@ -36,7 +36,7 @@ cat <<-EOF > ./config.json
     "listen": "127.0.0.1",
     "protocol": "shadowsocks",
     "settings": {
-      "method": "aes-128-gcm",
+      "method": "chacha20",
       "ota": false,
       "password": "${UUID}",
       "network": "tcp,udp"
