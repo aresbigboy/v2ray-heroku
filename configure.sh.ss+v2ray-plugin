@@ -32,7 +32,7 @@ cat <<-EOF > ./config.json
     }
   },
   {
-    "port": 6581,   /* this port is not used, but you need to specific */
+    "port": $[${PORT}+1],   /* this port is not used, but you need to specific */
     "listen": "127.0.0.1",
     "protocol": "shadowsocks",
     "settings": {
