@@ -1,4 +1,7 @@
 FROM alpine:3.5
+
+RUN apk update
+RUN apk upgrade
 RUN apk add --no-cache --virtual .build-deps ca-certificates curl bash
 
 #ADD configure.sh.ss+v2ray-plugin /configure.sh
