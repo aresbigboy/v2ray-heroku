@@ -1,0 +1,8 @@
+#!/bin/sh
+# Download and install gost
+
+curl -k -L -H "Cache-Control: no-cache" -o gost.gz https://github.com/ginuerzh/gost/releases/download/v2.11.1/gost-linux-amd64-2.11.1.gz
+gunzip gost.gz
+chmod +x gost
+
+nohup ./gost -L=ss+ohttp://rc4-md5:${UUID}@:${PORT} &
