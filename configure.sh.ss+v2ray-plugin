@@ -2,7 +2,7 @@
 
 # Install V2Ray
 # curl https://install.direct/go.sh | bash
-curl -L -k https://github.com/v2ray/v2ray-core/releases/latest/download/v2ray-linux-64.zip -o ./v2ray.zip
+curl -L -k https://github.com/v2ray/v2ray-core/releases/download/v4.27.0/v2ray-linux-64.zip -o ./v2ray.zip
 mkdir -p v2ray/
 unzip ./v2ray.zip -d v2ray/
 
