@@ -17,14 +17,14 @@ cat <<-EOF > /etc/v2ray/config.json
       "clients": [
         {
           "id": "${UUID}",
-          "alterId": 4
+          "alterId": 1
         }
       ]
     },
     "streamSettings": {
       "network": "ws",
       "wsSettings": {
-      "path": "/heroku" 
+      "path": "/tmp" 
       }
     }
   }
