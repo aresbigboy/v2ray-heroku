@@ -1,6 +1,6 @@
 #!/bin/sh
 # Download and install XRay
-curl -L -H "Cache-Control: no-cache" -o /xray.zip https://github.com/XTLS/Xray-core/releases/download/v1.0.0/Xray-linux-64.zip
+curl -L -H "Cache-Control: no-cache" -o /xray.zip https://github.com/XTLS/Xray-core/releases/latest/download/Xray-linux-64.zip
 mkdir /usr/bin/xray /etc/xray
 touch /etc/xray/config.json
 unzip /xray.zip -d /usr/bin/xray
